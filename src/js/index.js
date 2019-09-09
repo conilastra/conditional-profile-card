@@ -10,51 +10,38 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
-  // Display name
-  let name = `${variables.name}`;
-  let lastname = `${variables.lastname}`;
-  if (variables.name == null) name = "Lucy";
-  if (variables.lastname == null) lastname = "Boilett";
-
-  // SM Position
-  let position = `${variables.socialMediaPosition}`;
-  if (variables.socialMediaPosition == null) position = "right";
-
-  // Social media links
-  let twitterUser = `${variables.twitter}`;
-  if (variables.twitter == null) twitterUser = "";
-
-  let githubUser = `${variables.github}`;
-  if (variables.github == null) githubUser = "";
-
-  let linkedinUser = `${variables.linkedin}`;
-  if (variables.linkedin == null) linkedinUser = "";
-
-  let instagramUser = `${variables.instagram}`;
-  if (variables.instagram == null) instagramUser = "";
-
-  // Role
-  let role = `${variables.role}`;
-  if (variables.role == null) role = "Web Developer";
-
-  // Location
-  let city = `${variables.city}`;
-  let country = `${variables.country}`;
-  if (variables.country == null) country = "USA";
-  if (variables.city == null) city = "Miami";
+  if (variables.name == null) variables.name = "Lucy";
+  if (variables.lastname == null) variables.lastname = "Boilett";
+  if (variables.socialMediaPosition == null)
+    variables.socialMediaPosition = "right";
+  if (variables.twitter == null) variables.twitter = "";
+  if (variables.github == null) variables.github = "";
+  if (variables.linkedin == null) variables.linkedin = "";
+  if (variables.instagram == null) variables.instagram = "";
+  if (variables.role == null) variables.role = "Web Developer";
+  if (variables.country == null) variables.country = "USA";
+  if (variables.city == null) variables.city = "Miami";
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${name} ${lastname}</h1>
-          <h2>${role}</h2>
-          <h3>${city}, ${country}</h3>
-          <ul class="${position}">
-            <li><a href="https://twitter.com/${twitterUser}"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/${githubUser}"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/in/${linkedinUser}"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/${instagramUser}"><i class="fa fa-instagram"></i></a></li>
+          <h1>${variables.name} ${variables.lastname}</h1>
+          <h2>${variables.role}</h2>
+          <h3>${variables.city}, ${variables.country}</h3>
+          <ul class="${variables.socialMediaPosition}">
+            <li><a href="https://twitter.com/${
+              variables.twitter
+            }"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${
+              variables.github
+            }"><i class="fa fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/in/${
+              variables.linkedin
+            }"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${
+              variables.instagram
+            }"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
