@@ -86,109 +86,120 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/style/index.scss":
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./src/style/index.scss ***!
-  \*************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/style/index.scss":
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/style/index.scss ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Imports
 exports.push([module.i, "@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);", ""]);
-
-// module
+// Module
 exports.push([module.i, ".filters {\n  background: white;\n  width: 100%; }\n  .filters li {\n    display: inline-block;\n    max-width: 80px;\n    padding: 3px; }\n    .filters li label {\n      display: block;\n      font-size: 12px;\n      font-weight: 900; }\n    .filters li input {\n      width: 100%; }\n    .filters li select {\n      width: 100%; }\n\n.widget {\n  position: relative;\n  width: 300px;\n  height: 350px;\n  margin: 50px auto;\n  background: #fff;\n  border-radius: 5px;\n  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1); }\n  .widget .cover {\n    height: 160px;\n    overflow: hidden; }\n    .widget .cover img {\n      width: 100%;\n      height: auto;\n      min-height: 160px;\n      border-radius: 4px 4px 0 0; }\n  .widget .photo {\n    position: absolute;\n    top: 85px;\n    left: 50%;\n    width: 100px;\n    height: 100px;\n    margin: 0 0 0 -55px;\n    border: 5px solid #fff;\n    border-radius: 50%; }\n  .widget h1,\n  .widget h2,\n  .widget h3 {\n    display: block;\n    margin: 10px 0;\n    text-align: center;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 16px;\n    font-weight: 300;\n    color: #999; }\n  .widget h1 {\n    margin: 60px 0 20px;\n    font-size: 26px;\n    color: #000; }\n  .widget h3 {\n    font-size: 12px; }\n  .widget ul {\n    position: absolute;\n    top: 20px;\n    padding: 0;\n    background: #2cdfd3; }\n    .widget ul.position-left {\n      left: -26px; }\n    .widget ul.position-right {\n      right: -27px; }\n    .widget ul li {\n      list-style: none; }\n      .widget ul li a {\n        display: block;\n        padding: 5px 6px;\n        color: #fff;\n        cursor: pointer;\n        text-align: center;\n        border-bottom: 1px solid #2cd5ca;\n        transition: background-color 0.3s; }\n      .widget ul li:hover > a {\n        background-color: #2cd5ca; }\n      .widget ul li:first-child > a {\n        border-radius: 0 3px 0 0; }\n      .widget ul li:last-child > a {\n        border: none;\n        border-radius: 0 0 3px 0; }\n", ""]);
-
-// exports
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/lib/css-base.js":
-/*!*************************************************!*\
-  !*** ./node_modules/css-loader/lib/css-base.js ***!
-  \*************************************************/
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
 */
 // css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
 
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
 
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
+      if (item[2]) {
+        return "@media ".concat(item[2], "{").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    for (var i = 0; i < this.length; i++) {
+      // eslint-disable-next-line prefer-destructuring
+      var id = this[i][0];
+
+      if (id != null) {
+        alreadyImportedModules[id] = true;
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = modules[_i]; // skip already imported module
+      // this implementation is not 100% perfect for weird media query combinations
+      // when a module is imported multiple times with different media queries.
+      // I hope this will never occur (Hey this way we have smaller bundles)
+
+      if (item[0] == null || !alreadyImportedModules[item[0]]) {
+        if (mediaQuery && !item[2]) {
+          item[2] = mediaQuery;
+        } else if (mediaQuery) {
+          item[2] = "(".concat(item[2], ") and (").concat(mediaQuery, ")");
+        }
+
+        list.push(item);
+      }
+    }
+  };
+
+  return list;
 };
 
 function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
 
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
+  var cssMapping = item[3];
 
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
+  if (!cssMapping) {
+    return content;
+  }
 
-	return [content].join('\n');
-}
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot).concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
 
-// Adapted from convert-source-map (MIT)
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
 function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
 }
-
 
 /***/ }),
 
@@ -701,30 +712,63 @@ __webpack_require__.r(__webpack_exports__);
  *  This function is called every time the user changes types or changes any input
  */
 function render(variables = {}) {
-  // here we ask the logical questions to make decitions on how to build the heml
+  // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+
+  // Display name
+  let name = `${variables.name}`;
+  let lastname = `${variables.lastname}`;
+  if (variables.name == null) name = "Lucy";
+  if (variables.lastname == null) lastname = "Boilett";
+
+  // SM Position
+  let position = `${variables.socialMediaPosition}`;
+  if (variables.socialMediaPosition == null) position = "right";
+
+  // Social media links
+  let twitterUser = `${variables.twitter}`;
+  if (variables.twitter == null) twitterUser = "";
+
+  let githubUser = `${variables.github}`;
+  if (variables.github == null) githubUser = "";
+
+  let linkedinUser = `${variables.linkedin}`;
+  if (variables.linkedin == null) linkedinUser = "";
+
+  let instagramUser = `${variables.instagram}`;
+  if (variables.instagram == null) instagramUser = "";
+
+  // Role
+  let role = `${variables.role}`;
+  if (variables.role == null) role = "Web Developer";
+
+  // Location
+  let city = `${variables.city}`;
+  let country = `${variables.country}`;
+  if (variables.country == null) country = "USA";
+  if (variables.city == null) city = "Miami";
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+          <h1>${name} ${lastname}</h1>
+          <h2>${role}</h2>
+          <h3>${city}, ${country}</h3>
+          <ul class="${position}">
+            <li><a href="https://twitter.com/${twitterUser}"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${githubUser}"><i class="fa fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/in/${linkedinUser}"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${instagramUser}"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
 }
 
 /**
- * Ignore this lines below, here is where we do the logic for the dropdowns
+ * Don't change any of the lines below, here is where we do the logic for the dropdowns
  */
 window.onload = function () {
   window.variables = {
@@ -768,7 +812,7 @@ window.onload = function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/sass-loader/lib/loader.js!./index.scss */ "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/style/index.scss");
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./index.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/style/index.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
